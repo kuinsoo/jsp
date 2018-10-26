@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="prod">
+	<select id="prodList" resultType="prodVo">
+		select a.prod_id
+		     , a.prod_name
+		     , a.prod_lgu
+		     , b.lprod_nm
+		     , a.prod_insdate
+		 from  prod a , lprod b
+		where  a.prod_lgu = lprod_gu
+	 order by  prod_id
+	</select>
+	
+	<select id="selectProdPageList" parameterType="pageVo" resultType="prodVo">
+	SELECT *
+	FROM
+	(SELECT ROWNUM AS rnum , A.* 
+	    FROM 
+	        ( SELECT prod.* , lprod.*
+	            FROM prod , lprod
+	           WHERE prod_lgu = lprod_gu
+	        ORDER BY prod_id)A)
+	WHERE  rnum BETWEEN #{page}*#{pageSize}-(#{pageSize}-1) AND #{page}*#{pageSize}
+  </select>
+  
+    <select id="getProdCnt"  resultType="int">
+		select count(*) from prod
+  	</select>
+  	
+  	<!-- 제품 상세 페이지 나오게 설정 -->
+  	<select id="prodDetail"  parameterType="String" resultType="prodVo">
+	   select a.prod_id
+		    , a.prod_name
+		    , b.lprod_nm
+		    , c.buyer_name
+		    , c.buyer_mail
+		 from prod a , lprod b , buyer c
+		where a.prod_lgu = b.lprod_gu
+		  and a.prod_buyer = buyer_id 
+		  and a.prod_name = #{prod_name}
+		order by prod_id
+  	</select>
+  	
+  	
+  	
+</mapper>
+
