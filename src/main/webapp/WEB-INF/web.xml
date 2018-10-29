@@ -63,11 +63,11 @@
 	<filter-mapping>
 		<filter-name>parameterFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping> -->
+	</filter-mapping>
 	<listener>
 		<listener-class>kr.or.ddit.listener.SessionListener</listener-class>
 	</listener>
 	<listener>
 		<listener-class>kr.or.ddit.listener.SessionAttrListener</listener-class>
-	</listener>
+	</listener> -->
 </web-app>
