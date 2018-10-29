@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import kr.or.ddit.db.SqlFactoryBuilder;
 import kr.or.ddit.prod.model.ProdVo;
 import kr.or.ddit.user.model.PageVo;
-import kr.or.ddit.user.model.UserVo;
 
 public class ProdDao implements ProdDaoInf {
 	

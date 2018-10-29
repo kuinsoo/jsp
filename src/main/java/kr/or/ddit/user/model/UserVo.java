@@ -2,7 +2,6 @@ package kr.or.ddit.user.model;
 
 import java.util.Date;
 
-import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
 

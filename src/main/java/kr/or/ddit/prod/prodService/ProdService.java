@@ -8,7 +8,6 @@ import kr.or.ddit.prod.model.ProdVo;
 import kr.or.ddit.prod.prodDao.ProdDao;
 import kr.or.ddit.prod.prodDao.ProdDaoInf;
 import kr.or.ddit.user.model.PageVo;
-import kr.or.ddit.user.model.UserVo;
 
 public class ProdService implements ProdServiceInf {
 	

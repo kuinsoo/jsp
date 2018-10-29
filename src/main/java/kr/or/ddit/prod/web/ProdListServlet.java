@@ -15,9 +15,6 @@ import kr.or.ddit.prod.model.ProdVo;
 import kr.or.ddit.prod.prodService.ProdService;
 import kr.or.ddit.prod.prodService.ProdServiceInf;
 import kr.or.ddit.user.model.PageVo;
-import kr.or.ddit.user.model.UserVo;
-import kr.or.ddit.user.userService.UserService;
-import kr.or.ddit.user.userService.UserServiceInf;
 
 @WebServlet(urlPatterns={"/prodList" ,"/pordDetail"})
 public class ProdListServlet extends HttpServlet {

@@ -8,20 +8,15 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
-import kr.or.ddit.db.TempDao;
-import kr.or.ddit.user.model.PageVo;
-import kr.or.ddit.user.model.UserVo;
-import kr.or.ddit.user.userDao.UserDao;
-import kr.or.ddit.user.userDao.UserDaoInf;
-import kr.or.ddit.user.userService.UserService;
-import kr.or.ddit.user.userService.UserServiceInf;
-
-import org.apache.ibatis.annotations.ResultMap;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import kr.or.ddit.user.model.PageVo;
+import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.user.userService.UserService;
 
 public class UserServiceTest {
 	

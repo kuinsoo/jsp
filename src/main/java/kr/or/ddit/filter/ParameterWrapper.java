@@ -1,6 +1,5 @@
 package kr.or.ddit.filter;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;

@@ -1,8 +1,8 @@
 package kr.or.ddit.locales;
 
-import static org.junit.Assert.*;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+
 import org.junit.Test;
 
 public class LocalesTest {

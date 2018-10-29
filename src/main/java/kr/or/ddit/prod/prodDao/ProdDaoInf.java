@@ -4,7 +4,6 @@ import java.util.List;
 
 import kr.or.ddit.prod.model.ProdVo;
 import kr.or.ddit.user.model.PageVo;
-import kr.or.ddit.user.model.UserVo;
 
 
 public interface ProdDaoInf {
