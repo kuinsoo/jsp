@@ -1,4 +1,4 @@
-ï»¿package kr.or.ddit.servlet.login;
+package kr.or.ddit.servlet.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,13 +23,13 @@ public class LoginServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	// 2 ìƒìˆ˜ë¡œ ì…ë ¥
+	// 2 »ó¼ö·Î ÀÔ·Â
 	//private final String USERID = "brown";
 	//private final String USERPW = "pass1234";
 	
 	// service --> request.getMethod() : "POST", "GET" --> doGet , doPost
-	// login.jspì—ì„œ methodë¥¼ postë¡œ í•˜ì˜€ê¸° ë•Œë¬¸ì— doPostë¡œ ì´ìš©
-	// doPostë¡œ ì‚¬ìš©
+	// login.jsp¿¡¼­ method¸¦ post·Î ÇÏ¿´±â ¶§¹®¿¡ doPost·Î ÀÌ¿ë
+	// doPost·Î »ç¿ë
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -42,59 +42,59 @@ public class LoginServlet extends HttpServlet {
 		//reqMap.put("newParameter", new String[]{"newValue"});
 		
 
-		// 1. ì‚¬ìš©ì ì•„ì´ë””ì™€ ë¹„ë°€ë²ˆí˜¸ë¥¼ reqeuestê°ì²´ì—ì„œ ë°›ì•„ì˜¨ë‹¤.
-		// 2. dbì—ì„œ ì¡°íšŒí•´ì˜¨ ì•„ì´ë””, ë¹„ë°€ë²ˆí˜¸ë¥¼ ì²´í¬í•œë‹¤.
-		// 3_1. ì¼ì¹˜í• ê²½ìš° main.jspë¡œ ì´ë™
-		// 3_2. ë¶ˆì¼ì¹˜í• ê²½ìš° login.jspë¡œ ì´ë™
+		// 1. »ç¿ëÀÚ ¾ÆÀÌµğ¿Í ºñ¹Ğ¹øÈ£¸¦ reqeuest°´Ã¼¿¡¼­ ¹Ş¾Æ¿Â´Ù.
+		// 2. db¿¡¼­ Á¶È¸ÇØ¿Â ¾ÆÀÌµğ, ºñ¹Ğ¹øÈ£¸¦ Ã¼Å©ÇÑ´Ù.
+		// 3_1. ÀÏÄ¡ÇÒ°æ¿ì main.jsp·Î ÀÌµ¿
+		// 3_2. ºÒÀÏÄ¡ÇÒ°æ¿ì login.jsp·Î ÀÌµ¿
 		
-		//1 : inputì— ìˆëŠ” nameì„ ê´„í˜¸ì— ë„£ì–´ì¤€ë‹¤
+		//1 : input¿¡ ÀÖ´Â nameÀ» °ıÈ£¿¡ ³Ö¾îÁØ´Ù
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
-		// getParameterëŠ” ë¦¬í„´ê°’ì´ ë¬´ì¡°ê±´ String ì´ë‹¤
+		// getParameter´Â ¸®ÅÏ°ªÀÌ ¹«Á¶°Ç String ÀÌ´Ù
 		String rememberMe = request.getParameter("remember-me");
 		
-		// remember-me íŒŒë¼ë¯¸í„° ë°›ì•„ì„œ sysoutìœ¼ë¡œ ì¶œë ¥ 
+		// remember-me ÆÄ¶ó¹ÌÅÍ ¹Ş¾Æ¼­ sysoutÀ¸·Î Ãâ·Â 
 		System.out.println(rememberMe);
 		
-		// rememberMe == null : ì•„ì´ë”” ê¸°ì–µ ì‚¬ìš©ì•ˆí•¨ 
+		// rememberMe == null : ¾ÆÀÌµğ ±â¾ï »ç¿ë¾ÈÇÔ 
 		if(rememberMe == null){
 			Cookie[] cookies = request.getCookies();
 			for(Cookie cookie : cookies){
 				
-				// cookie ì´ë¦„ì´ remember , userId ì¼ ê²½ìš° maxageë¥¼ -1ë¡œ ì„¤ì •í•˜ì—¬ ì¿ í‚¤ë¥¼ ìœ íš¨í•˜ì§€ ì•Šê²Œ ì„¤ì •
+				// cookie ÀÌ¸§ÀÌ remember , userId ÀÏ °æ¿ì maxage¸¦ -1·Î ¼³Á¤ÇÏ¿© ÄíÅ°¸¦ À¯È¿ÇÏÁö ¾Ê°Ô ¼³Á¤
 				if(cookie.getName().equals("remember")||cookie.getName().equals("userId")){
 					
-					//-1 : ë¸Œë¼ìš°ì € ì¬ì‹œì‘ì‹œ ì¿ í‚¤ ì‚­ì œ ë°˜ì˜ 
-					//0: ë°”ë¡œ ì‚­ì œ 
+					//-1 : ºê¶ó¿ìÀú Àç½ÃÀÛ½Ã ÄíÅ° »èÁ¦ ¹İ¿µ 
+					//0: ¹Ù·Î »èÁ¦ 
 					cookie.setMaxAge(0);
 					resp.addCookie(cookie);
 				}
 	
 			}
 		}
-		// remeberMe != null : ì•„ì´ë”” ê¸°ì–µ ì‚¬ìš© 	
+		// remeberMe != null : ¾ÆÀÌµğ ±â¾ï »ç¿ë 	
 		else{
-			// response ê°ì²´ì— ì¿ í‚¤ë¥¼ ì €ì¥
+			// response °´Ã¼¿¡ ÄíÅ°¸¦ ÀúÀå
 			Cookie cookie = new Cookie("remember", "Y");
-			Cookie userIdcookie = new Cookie("userId", userId);	// userIdë„ ì €ì¥í•´ì•¼ í•˜ê¸° ë•Œë¬¸ì— ì €ì¥í•´ ë†“ìŒ 
-			resp.addCookie(cookie); // ìœ„ì—ì„œ ì„ ì–¸í•œê²ƒ ì…ë ¥ 
+			Cookie userIdcookie = new Cookie("userId", userId);	// userIdµµ ÀúÀåÇØ¾ß ÇÏ±â ¶§¹®¿¡ ÀúÀåÇØ ³õÀ½ 
+			resp.addCookie(cookie); // À§¿¡¼­ ¼±¾ğÇÑ°Í ÀÔ·Â 
 			resp.addCookie(userIdcookie); 
 		}
 		
-		//2 --> dbëŒ€ì‹  ìƒìˆ˜ë¡œ ëŒ€ì²´ --> dbë¡œ ëŒ€ì²´
-			// 1.  ì‚¬ìš©ìê°€ ì „ì†¡í•œ userId íŒŒë¼ë¯¸í„°ë¡œ ì‚¬ìš©ì ì •ë³´ì¡°íšŒ 
-			// 2.  dbì—ì„œ ì¡°íšŒí•œ ì‚¬ìš©ì ë¹„ë°€ë²ˆí˜¸ê°€ íŒŒë¼ë¯¸í„°ë¡œ ì „ì†¡ëœ ë¹„ë°€ë²ˆí˜¸ì™€ ë™ì¼í•œì§€ ë¹„êµ 
-			// 3.  sessionì— ì‚¬ìš©ì ì •ë³´ë“±ë¡(as-is : ì„ì˜ì˜ userVoë“±ë¡
-			//						to-be : dbì—ì„œ ì¡°íšŒí•œ userVo)
-			// pom.xml ì—ì„œ oracle dependecy scopeì‚­ì œ
+		//2 --> db´ë½Å »ó¼ö·Î ´ëÃ¼ --> db·Î ´ëÃ¼
+			// 1.  »ç¿ëÀÚ°¡ Àü¼ÛÇÑ userId ÆÄ¶ó¹ÌÅÍ·Î »ç¿ëÀÚ Á¤º¸Á¶È¸ 
+			// 2.  db¿¡¼­ Á¶È¸ÇÑ »ç¿ëÀÚ ºñ¹Ğ¹øÈ£°¡ ÆÄ¶ó¹ÌÅÍ·Î Àü¼ÛµÈ ºñ¹Ğ¹øÈ£¿Í µ¿ÀÏÇÑÁö ºñ±³ 
+			// 3.  session¿¡ »ç¿ëÀÚ Á¤º¸µî·Ï(as-is : ÀÓÀÇÀÇ userVoµî·Ï
+			//						to-be : db¿¡¼­ Á¶È¸ÇÑ userVo)
+			// pom.xml ¿¡¼­ oracle dependecy scope»èÁ¦
 		
-		// ì„œë¹„ìŠ¤ ê°ì²´ ìƒì„± 
+		// ¼­ºñ½º °´Ã¼ »ı¼º 
 		UserServiceInf service = new UserService();
-		// 1.  ì‚¬ìš©ìê°€ ì „ì†¡í•œ userId íŒŒë¼ë¯¸í„°ë¡œ ì‚¬ìš©ì ì •ë³´ì¡°íšŒ 
+		// 1.  »ç¿ëÀÚ°¡ Àü¼ÛÇÑ userId ÆÄ¶ó¹ÌÅÍ·Î »ç¿ëÀÚ Á¤º¸Á¶È¸ 
 		UserVo user = service.selectUser(userId);
 	
-		// 2.  dbì—ì„œ ì¡°íšŒí•œ ì‚¬ìš©ì ë¹„ë°€ë²ˆí˜¸ê°€ íŒŒë¼ë¯¸í„°ë¡œ ì „ì†¡ëœ ë¹„ë°€ë²ˆí˜¸ì™€ ë™ì¼í•œì§€ ë¹„êµ 
-		//3_1 : main.jspë¡œ ì´ë™
+		// 2.  db¿¡¼­ Á¶È¸ÇÑ »ç¿ëÀÚ ºñ¹Ğ¹øÈ£°¡ ÆÄ¶ó¹ÌÅÍ·Î Àü¼ÛµÈ ºñ¹Ğ¹øÈ£¿Í µ¿ÀÏÇÑÁö ºñ±³ 
+		//3_1 : main.jsp·Î ÀÌµ¿
 		
 		String encryptPass = KISA_SHA256.encrypt(password);
 
@@ -102,38 +102,38 @@ public class LoginServlet extends HttpServlet {
 		if(user != null &&  user.authPass(encryptPass)){
 		//if(user != null &&  user.getPass().equals(encryptPass)){
 			// redirect : 
-			//ê´„í˜¸ì—ëŠ” urlë¥¼ ì…ë ¥í•˜ê¸° 
+			//°ıÈ£¿¡´Â url¸¦ ÀÔ·ÂÇÏ±â 
 			//resp.sendRedirect("main.jsp?userId="+userId 
 			//					+"&password="+ password);
 			
-			//sessionì— ì‚¬ìš©ì ì •ë³´ ì„¤ì • (dbë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šê³  í•˜ë“œì½”ë”©)
+			//session¿¡ »ç¿ëÀÚ Á¤º¸ ¼³Á¤ (db¸¦ »ç¿ëÇÏÁö ¾Ê°í ÇÏµåÄÚµù)
 /*			UserVo userVo = new UserVo();
 			userVo.setUserId(user.getUserId());
 			userVo.setName(user.getName());
 			userVo.setAlias(user.getAlias());
 			userVo.setBirth(user.getBirth());*/
 			
-			// sessionìœ¼ë¡œ ë§Œë“¤ê¸° 
-			// ë°©ë²• 1.
-			// HttpSession session = request.getSession();	// ì´ë ‡ê²Œë„ ì‚¬ìš©í• ìˆ˜ ìˆìŒ
-			// session.setAttribute("ì´ë¦„",ê°’);
+			// sessionÀ¸·Î ¸¸µé±â 
+			// ¹æ¹ı 1.
+			// HttpSession session = request.getSession();	// ÀÌ·¸°Ôµµ »ç¿ëÇÒ¼ö ÀÖÀ½
+			// session.setAttribute("ÀÌ¸§",°ª);
 			
 			
-			// ë°©ë²•2.
+			// ¹æ¹ı2.
 			request.getSession().setAttribute("S_USER", user );
 			
-			// 2. main.jsp í™”ë©´ì— boby ì˜ì—­ì— ì´ë¦„[ë³„ëª…]ë‹˜ ì•ˆë…•í•˜ì„¸ìš”  ë§Œë“¤ê¸°
+			// 2. main.jsp È­¸é¿¡ boby ¿µ¿ª¿¡ ÀÌ¸§[º°¸í]´Ô ¾È³çÇÏ¼¼¿ä  ¸¸µé±â
 		
 			
-			//dispatch : ìš”ì²­ì„ í•œë²ˆ ë³´ë‚¸ê²ƒ ( ì£¼ì†Œì¤„ì— http://localhost:8081/dditLogin)ë¡œ ë‚˜ì˜¤ê²Œëœë‹¤
+			//dispatch : ¿äÃ»À» ÇÑ¹ø º¸³½°Í ( ÁÖ¼ÒÁÙ¿¡ http://localhost:8081/dditLogin)·Î ³ª¿À°ÔµÈ´Ù
 			RequestDispatcher rd =  request.getRequestDispatcher("main.jsp");
-			// HttpServletRequest request, HttpServletResponse resp ë³€ìˆ˜ ì…ë ¥í•˜ê¸°
+			// HttpServletRequest request, HttpServletResponse resp º¯¼ö ÀÔ·ÂÇÏ±â
 			rd.forward(request, resp);
 		}
 		
-		//3_2 : login.jspë¡œ ì´ë™
+		//3_2 : login.jsp·Î ÀÌµ¿
 		else{
-			//loginí´ë” ì•ˆì— ìˆê¸° ë•Œë¬¸ì— í´ë”ëª… ëª…ì‹œ
+			//loginÆú´õ ¾È¿¡ ÀÖ±â ¶§¹®¿¡ Æú´õ¸í ¸í½Ã
 			resp.sendRedirect("login/login.jsp");
 		}
 	
@@ -142,13 +142,13 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// postë°©ì‹ì¼ë•Œ ì¸ì½”ë”© ë°©ë²• -> postì— ë‹¤ë¥¸ ê±¸ ì…ë ¥í•´ì•¼ í•´ì„œ doGetì— ì…ë ¥í•´ë†“ì€ê²ƒ 
+		// post¹æ½ÄÀÏ¶§ ÀÎÄÚµù ¹æ¹ı -> post¿¡ ´Ù¸¥ °É ÀÔ·ÂÇØ¾ß ÇØ¼­ doGet¿¡ ÀÔ·ÂÇØ³õÀº°Í 
 		request.setCharacterEncoding("utf-8");
 	
-		// ì½˜í…ì¸  íƒ€ì… ì„¤ì •
+		// ÄÜÅÙÃ÷ Å¸ÀÔ ¼³Á¤
 		resp.setContentType("text/html; charset=utf-8");
 		
-		// ì›¹ í™”ë©´ ë³´ì—¬ì§€ë ¤ê³  PrintWriterì‚¬ìš©
+		// À¥ È­¸é º¸¿©Áö·Á°í PrintWriter»ç¿ë
 		PrintWriter pw = resp.getWriter();
 		
 		
@@ -160,9 +160,9 @@ public class LoginServlet extends HttpServlet {
 	    pw.print("		</head>");
 	    pw.print("		<body>");
 
-	    // ì•„ì•„ë””ê°€ ë‘ê°œë¡œ ì„¤ì •ë˜ì–´ ìˆì–´ getParameterValuesë¡œ ì´ìš©
+	    // ¾Æ¾Æµğ°¡ µÎ°³·Î ¼³Á¤µÇ¾î ÀÖ¾î getParameterValues·Î ÀÌ¿ë
 	    String[] userIds = request.getParameterValues("userId");
-	    // íŒ¨ìŠ¤ì›Œë“œ
+	    // ÆĞ½º¿öµå
 	    String password = request.getParameter("password");
 	 	
 		for(String userId: userIds){ 
