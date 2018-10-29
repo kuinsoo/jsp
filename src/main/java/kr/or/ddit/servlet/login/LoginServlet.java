@@ -18,6 +18,11 @@ import kr.or.ddit.user.userService.UserServiceInf;
 
 public class LoginServlet extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	// 2 상수로 입력
 	//private final String USERID = "brown";
 	//private final String USERPW = "pass1234";
