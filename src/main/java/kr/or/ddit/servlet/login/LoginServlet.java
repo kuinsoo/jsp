@@ -23,13 +23,13 @@ public class LoginServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	// 2 »ó¼ö·Î ÀÔ·Â
+	// 2 ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
 	//private final String USERID = "brown";
 	//private final String USERPW = "pass1234";
 	
 	// service --> request.getMethod() : "POST", "GET" --> doGet , doPost
-	// login.jsp¿¡¼­ method¸¦ post·Î ÇÏ¿´±â ¶§¹®¿¡ doPost·Î ÀÌ¿ë
-	// doPost·Î »ç¿ë
+	// login.jspï¿½ï¿½ï¿½ï¿½ methodï¿½ï¿½ postï¿½ï¿½ ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ doPostï¿½ï¿½ ï¿½Ì¿ï¿½
+	// doPostï¿½ï¿½ ï¿½ï¿½ï¿½
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -42,98 +42,98 @@ public class LoginServlet extends HttpServlet {
 		//reqMap.put("newParameter", new String[]{"newValue"});
 		
 
-		// 1. »ç¿ëÀÚ ¾ÆÀÌµð¿Í ºñ¹Ð¹øÈ£¸¦ reqeuest°´Ã¼¿¡¼­ ¹Þ¾Æ¿Â´Ù.
-		// 2. db¿¡¼­ Á¶È¸ÇØ¿Â ¾ÆÀÌµð, ºñ¹Ð¹øÈ£¸¦ Ã¼Å©ÇÑ´Ù.
-		// 3_1. ÀÏÄ¡ÇÒ°æ¿ì main.jsp·Î ÀÌµ¿
-		// 3_2. ºÒÀÏÄ¡ÇÒ°æ¿ì login.jsp·Î ÀÌµ¿
+		// 1. ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ reqeuestï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿Â´ï¿½.
+		// 2. dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ø¿ï¿½ ï¿½ï¿½ï¿½Ìµï¿½, ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ Ã¼Å©ï¿½Ñ´ï¿½.
+		// 3_1. ï¿½ï¿½Ä¡ï¿½Ò°ï¿½ï¿½ main.jspï¿½ï¿½ ï¿½Ìµï¿½
+		// 3_2. ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½Ò°ï¿½ï¿½ login.jspï¿½ï¿½ ï¿½Ìµï¿½
 		
-		//1 : input¿¡ ÀÖ´Â nameÀ» °ýÈ£¿¡ ³Ö¾îÁØ´Ù
+		//1 : inputï¿½ï¿½ ï¿½Ö´ï¿½ nameï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ø´ï¿½
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
-		// getParameter´Â ¸®ÅÏ°ªÀÌ ¹«Á¶°Ç String ÀÌ´Ù
+		// getParameterï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ String ï¿½Ì´ï¿½
 		String rememberMe = request.getParameter("remember-me");
 		
-		// remember-me ÆÄ¶ó¹ÌÅÍ ¹Þ¾Æ¼­ sysoutÀ¸·Î Ãâ·Â 
+		// remember-me ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¼ï¿½ sysoutï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 
 		System.out.println(rememberMe);
 		
-		// rememberMe == null : ¾ÆÀÌµð ±â¾ï »ç¿ë¾ÈÇÔ 
+		// rememberMe == null : ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 		if(rememberMe == null){
 			Cookie[] cookies = request.getCookies();
 			for(Cookie cookie : cookies){
 				
-				// cookie ÀÌ¸§ÀÌ remember , userId ÀÏ °æ¿ì maxage¸¦ -1·Î ¼³Á¤ÇÏ¿© ÄíÅ°¸¦ À¯È¿ÇÏÁö ¾Ê°Ô ¼³Á¤
+				// cookie ï¿½Ì¸ï¿½ï¿½ï¿½ remember , userId ï¿½ï¿½ ï¿½ï¿½ï¿½ maxageï¿½ï¿½ -1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½
 				if(cookie.getName().equals("remember")||cookie.getName().equals("userId")){
 					
-					//-1 : ºê¶ó¿ìÀú Àç½ÃÀÛ½Ã ÄíÅ° »èÁ¦ ¹Ý¿µ 
-					//0: ¹Ù·Î »èÁ¦ 
+					//-1 : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Û½ï¿½ ï¿½ï¿½Å° ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¿ï¿½ 
+					//0: ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 					cookie.setMaxAge(0);
 					resp.addCookie(cookie);
 				}
 	
 			}
 		}
-		// remeberMe != null : ¾ÆÀÌµð ±â¾ï »ç¿ë 	
+		// remeberMe != null : ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 	
 		else{
-			// response °´Ã¼¿¡ ÄíÅ°¸¦ ÀúÀå
+			// response ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			Cookie cookie = new Cookie("remember", "Y");
-			Cookie userIdcookie = new Cookie("userId", userId);	// userIdµµ ÀúÀåÇØ¾ß ÇÏ±â ¶§¹®¿¡ ÀúÀåÇØ ³õÀ½ 
-			resp.addCookie(cookie); // À§¿¡¼­ ¼±¾ðÇÑ°Í ÀÔ·Â 
+			Cookie userIdcookie = new Cookie("userId", userId);	// userIdï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+			resp.addCookie(cookie); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ°ï¿½ ï¿½Ô·ï¿½ 
 			resp.addCookie(userIdcookie); 
 		}
 		
-		//2 --> db´ë½Å »ó¼ö·Î ´ëÃ¼ --> db·Î ´ëÃ¼
-			// 1.  »ç¿ëÀÚ°¡ Àü¼ÛÇÑ userId ÆÄ¶ó¹ÌÅÍ·Î »ç¿ëÀÚ Á¤º¸Á¶È¸ 
-			// 2.  db¿¡¼­ Á¶È¸ÇÑ »ç¿ëÀÚ ºñ¹Ð¹øÈ£°¡ ÆÄ¶ó¹ÌÅÍ·Î Àü¼ÛµÈ ºñ¹Ð¹øÈ£¿Í µ¿ÀÏÇÑÁö ºñ±³ 
-			// 3.  session¿¡ »ç¿ëÀÚ Á¤º¸µî·Ï(as-is : ÀÓÀÇÀÇ userVoµî·Ï
-			//						to-be : db¿¡¼­ Á¶È¸ÇÑ userVo)
-			// pom.xml ¿¡¼­ oracle dependecy scope»èÁ¦
+		//2 --> dbï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ --> dbï¿½ï¿½ ï¿½ï¿½Ã¼
+			// 1.  ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ userId ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸ 
+			// 2.  dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 
+			// 3.  sessionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(as-is : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ userVoï¿½ï¿½ï¿½
+			//						to-be : dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ userVo)
+			// pom.xml ï¿½ï¿½ï¿½ï¿½ oracle dependecy scopeï¿½ï¿½ï¿½ï¿½
 		
-		// ¼­ºñ½º °´Ã¼ »ý¼º 
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ 
 		UserServiceInf service = new UserService();
-		// 1.  »ç¿ëÀÚ°¡ Àü¼ÛÇÑ userId ÆÄ¶ó¹ÌÅÍ·Î »ç¿ëÀÚ Á¤º¸Á¶È¸ 
+		// 1.  ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ userId ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸ 
 		UserVo user = service.selectUser(userId);
 	
-		// 2.  db¿¡¼­ Á¶È¸ÇÑ »ç¿ëÀÚ ºñ¹Ð¹øÈ£°¡ ÆÄ¶ó¹ÌÅÍ·Î Àü¼ÛµÈ ºñ¹Ð¹øÈ£¿Í µ¿ÀÏÇÑÁö ºñ±³ 
-		//3_1 : main.jsp·Î ÀÌµ¿
+		// 2.  dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 
+		//3_1 : main.jspï¿½ï¿½ ï¿½Ìµï¿½
 		
-		String encryptPass = KISA_SHA256.encrypt(password);
+//		String encryptPass = KISA_SHA256.encrypt(password);
 
 		
-		if(user != null &&  user.authPass(encryptPass)){
+		if(user != null &&  user.authPass(password)){
 		//if(user != null &&  user.getPass().equals(encryptPass)){
 			// redirect : 
-			//°ýÈ£¿¡´Â url¸¦ ÀÔ·ÂÇÏ±â 
+			//ï¿½ï¿½È£ï¿½ï¿½ï¿½ï¿½ urlï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï±ï¿½ 
 			//resp.sendRedirect("main.jsp?userId="+userId 
 			//					+"&password="+ password);
 			
-			//session¿¡ »ç¿ëÀÚ Á¤º¸ ¼³Á¤ (db¸¦ »ç¿ëÇÏÁö ¾Ê°í ÇÏµåÄÚµù)
+			//sessionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (dbï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½Ïµï¿½ï¿½Úµï¿½)
 /*			UserVo userVo = new UserVo();
 			userVo.setUserId(user.getUserId());
 			userVo.setName(user.getName());
 			userVo.setAlias(user.getAlias());
 			userVo.setBirth(user.getBirth());*/
 			
-			// sessionÀ¸·Î ¸¸µé±â 
-			// ¹æ¹ý 1.
-			// HttpSession session = request.getSession();	// ÀÌ·¸°Ôµµ »ç¿ëÇÒ¼ö ÀÖÀ½
-			// session.setAttribute("ÀÌ¸§",°ª);
+			// sessionï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ 
+			// ï¿½ï¿½ï¿½ 1.
+			// HttpSession session = request.getSession();	// ï¿½Ì·ï¿½ï¿½Ôµï¿½ ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+			// session.setAttribute("ï¿½Ì¸ï¿½",ï¿½ï¿½);
 			
 			
-			// ¹æ¹ý2.
+			// ï¿½ï¿½ï¿½2.
 			request.getSession().setAttribute("S_USER", user );
 			
-			// 2. main.jsp È­¸é¿¡ boby ¿µ¿ª¿¡ ÀÌ¸§[º°¸í]´Ô ¾È³çÇÏ¼¼¿ä  ¸¸µé±â
+			// 2. main.jsp È­ï¿½é¿¡ boby ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½[ï¿½ï¿½ï¿½ï¿½]ï¿½ï¿½ ï¿½È³ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 			
-			//dispatch : ¿äÃ»À» ÇÑ¹ø º¸³½°Í ( ÁÖ¼ÒÁÙ¿¡ http://localhost:8081/dditLogin)·Î ³ª¿À°ÔµÈ´Ù
+			//dispatch : ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ( ï¿½Ö¼ï¿½ï¿½Ù¿ï¿½ http://localhost:8081/dditLogin)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ÔµÈ´ï¿½
 			RequestDispatcher rd =  request.getRequestDispatcher("main.jsp");
-			// HttpServletRequest request, HttpServletResponse resp º¯¼ö ÀÔ·ÂÇÏ±â
+			// HttpServletRequest request, HttpServletResponse resp ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï±ï¿½
 			rd.forward(request, resp);
 		}
 		
-		//3_2 : login.jsp·Î ÀÌµ¿
+		//3_2 : login.jspï¿½ï¿½ ï¿½Ìµï¿½
 		else{
-			//loginÆú´õ ¾È¿¡ ÀÖ±â ¶§¹®¿¡ Æú´õ¸í ¸í½Ã
+			//loginï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 			resp.sendRedirect("login/login.jsp");
 		}
 	
@@ -142,13 +142,13 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// post¹æ½ÄÀÏ¶§ ÀÎÄÚµù ¹æ¹ý -> post¿¡ ´Ù¸¥ °É ÀÔ·ÂÇØ¾ß ÇØ¼­ doGet¿¡ ÀÔ·ÂÇØ³õÀº°Í 
+		// postï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ -> postï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ø¾ï¿½ ï¿½Ø¼ï¿½ doGetï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ø³ï¿½ï¿½ï¿½ï¿½ï¿½ 
 		request.setCharacterEncoding("utf-8");
 	
-		// ÄÜÅÙÃ÷ Å¸ÀÔ ¼³Á¤
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		resp.setContentType("text/html; charset=utf-8");
 		
-		// À¥ È­¸é º¸¿©Áö·Á°í PrintWriter»ç¿ë
+		// ï¿½ï¿½ È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PrintWriterï¿½ï¿½ï¿½
 		PrintWriter pw = resp.getWriter();
 		
 		
@@ -160,9 +160,9 @@ public class LoginServlet extends HttpServlet {
 	    pw.print("		</head>");
 	    pw.print("		<body>");
 
-	    // ¾Æ¾Æµð°¡ µÎ°³·Î ¼³Á¤µÇ¾î ÀÖ¾î getParameterValues·Î ÀÌ¿ë
+	    // ï¿½Æ¾Æµï¿½ ï¿½Î°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö¾ï¿½ getParameterValuesï¿½ï¿½ ï¿½Ì¿ï¿½
 	    String[] userIds = request.getParameterValues("userId");
-	    // ÆÐ½º¿öµå
+	    // ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½
 	    String password = request.getParameter("password");
 	 	
 		for(String userId: userIds){ 
